@@ -3,192 +3,78 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Health & Technology — Neon Health Run</title>
+<title>Neon Health Run</title>
 <style>
-:root{--bg:#07111f;--panel:#0d1e32;--line:#28506b;--cyan:#63efff;--pink:#ff6fb5;--yellow:#ffd45a;--green:#62e69b;--text:#f5fbff;--muted:#a9c4d3}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(#07111f,#0b1930);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif}.wrap{max-width:1100px;margin:auto;padding:18px}.hero{display:flex;justify-content:space-between;align-items:end;gap:15px}.eyebrow{color:var(--cyan);font-weight:900;font-size:12px;letter-spacing:3px}.title{font-size:clamp(2rem,6vw,4rem);line-height:.95;margin:7px 0}.muted{color:var(--muted)}.panel{background:#0c1d31eF;border:1px solid var(--line);border-radius:22px;padding:18px;margin-top:15px;box-shadow:0 18px 50px #0005}.roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px;margin:15px 0}.char{appearance:none;border:2px solid #23485f;background:#10263b;color:white;border-radius:16px;padding:10px;cursor:pointer;text-align:center;transition:.15s;touch-action:manipulation}.char:hover{transform:translateY(-3px);border-color:var(--cyan)}.char.selected{border-color:var(--yellow);box-shadow:0 0 0 3px #ffd45a44;background:#173a52}.mini{height:82px;width:68px;margin:auto auto 7px;position:relative}.mini .head{position:absolute;left:17px;top:8px;width:34px;height:38px;border-radius:45% 45% 42% 42%;background:var(--skin);z-index:2}.mini .hair{position:absolute;left:12px;top:2px;width:44px;height:32px;background:var(--hair);border-radius:55% 55% 28% 28%;z-index:3}.mini .body{position:absolute;left:12px;top:43px;width:44px;height:30px;background:var(--shirt);border-radius:9px 9px 4px 4px}.mini .leg1,.mini .leg2{position:absolute;top:69px;width:14px;height:13px;background:#263b56;border-radius:3px}.mini .leg1{left:17px}.mini .leg2{left:37px}.mini .eye{position:absolute;top:24px;width:4px;height:4px;background:#17202a;border-radius:50%;z-index:4}.mini .e1{left:26px}.mini .e2{left:39px}.char b{display:block;min-height:2.3em}.btn{appearance:none;border:1px solid #3f8398;border-radius:12px;background:#14546d;color:white;font-weight:900;padding:12px 17px;cursor:pointer;min-height:44px;touch-action:manipulation}.btn.primary{background:#087f91;border-color:#6cf4ff}.btn.gold{background:#9a6b09;border-color:#ffd45a}.btn:disabled{opacity:.45;cursor:not-allowed}.actions{display:flex;gap:9px;flex-wrap:wrap}.game{display:none}.game.show{display:block}.hud{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.pill{background:#091b2b;border:1px solid #2b526a;border-radius:999px;padding:8px 12px}.stage{border:2px solid #39748b;border-radius:18px;background:#050d18;padding:7px;overflow:hidden}.stage canvas{width:100%;height:auto;display:block;image-rendering:auto;border-radius:12px}.below{display:grid;grid-template-columns:1fr 270px;gap:12px;margin-top:12px}.box{background:#091b2b;border:1px solid #2a536b;border-radius:15px;padding:13px}.controls{display:grid;grid-template-columns:55px 55px 55px;gap:6px;justify-content:center;margin-top:8px}.controls button{font-size:20px;height:48px}.up{grid-column:2}.left{grid-column:1}.down{grid-column:2}.right{grid-column:3}.modal{display:none;position:fixed;inset:0;background:#020813dd;z-index:10;align-items:center;justify-content:center;padding:15px}.modal.open{display:flex}.dialog{width:min(560px,100%);background:#10283b;border:2px solid #63efff;border-radius:20px;padding:20px;box-shadow:0 0 60px #36eaff33}.answers{display:grid;gap:9px}.answers button{text-align:left}.feedback{min-height:28px;margin-top:10px;font-weight:800}.end{text-align:center}.hide{display:none!important}@media(max-width:700px){.below{grid-template-columns:1fr}.wrap{padding:10px}.panel{padding:12px}.roster{grid-template-columns:repeat(2,1fr)}}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:Inter,system-ui,sans-serif;background:#071426;color:#fff}
+:root{--cyan:#5ff3ff;--lime:#9cff72;--pink:#ff6fae;--yellow:#ffd85b}
+button{font:inherit}
+#app{width:100vw;height:100vh;position:relative;background:linear-gradient(180deg,#071426 0%,#0d2940 62%,#07121f 100%)}
+#select{position:absolute;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(circle at 50% 25%,#153e59aa,#06101dee 65%)}
+.card{width:min(1100px,94vw);max-height:92vh;overflow:auto;background:#081827eF;border:2px solid #285a72;border-radius:30px;padding:30px;box-shadow:0 25px 100px #0009}
+.kicker{font-weight:900;letter-spacing:4px;color:var(--cyan);font-size:12px}.logo{font-size:clamp(34px,7vw,78px);font-weight:1000;line-height:.9;margin:8px 0;text-shadow:0 5px 0 #12384a}.sub{color:#a9c5d2}.roster{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin:24px 0}.char{background:#0c2436;color:#fff;border:2px solid #21495e;border-radius:18px;padding:8px 5px;min-height:118px;cursor:pointer;transition:.15s}.char:hover{transform:translateY(-4px);border-color:var(--cyan)}.char.sel{border-color:var(--yellow);box-shadow:0 0 0 3px #ffd85b33;background:#14374b}.avatar{height:65px;position:relative;width:54px;margin:auto}.avatar:before{content:"";position:absolute;width:34px;height:34px;border-radius:50%;left:10px;top:4px;background:var(--skin);box-shadow:0 28px 0 3px var(--shirt)}.avatar:after{content:"";position:absolute;width:40px;height:22px;left:7px;top:0;border-radius:55% 55% 30% 30%;background:var(--hair)}.char b{display:block;font-size:12px;margin-top:7px}.start{border:0;background:linear-gradient(135deg,#16b9c8,#08798f);color:white;font-weight:1000;padding:16px 28px;border-radius:15px;cursor:pointer;box-shadow:0 10px 30px #00d9ff33}.start:hover{transform:translateY(-2px)}
+#game{display:none;position:absolute;inset:0}.top{position:absolute;left:0;right:0;top:0;z-index:5;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(#06121eee,#06121e00);pointer-events:none}.stats{display:flex;gap:8px;flex-wrap:wrap}.pill{background:#071827cc;border:1px solid #32637b;border-radius:999px;padding:8px 12px;font-weight:800;font-size:13px}.mission{color:var(--cyan)}#scene{position:absolute;inset:0;overflow:hidden}.sky{position:absolute;inset:0;background:linear-gradient(#08172c 0%,#0c3650 55%,#0b1d2b 100%)}.stars{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:70px 70px;opacity:.18}.city{position:absolute;left:-10%;right:-10%;bottom:30%;height:35%;background:linear-gradient(90deg,#102a3a 10%,#173e50 10% 17%,#102a3a 17% 27%,#1b4658 27% 38%,#102a3a 38% 49%,#174253 49% 63%,#102a3a 63% 75%,#1c4a5a 75% 86%,#102a3a 86%);opacity:.8;transform:skewX(-3deg)}.city:after{content:"";position:absolute;inset:18% 0 0;background:repeating-linear-gradient(90deg,transparent 0 35px,#5ff3ff22 36px 39px,transparent 40px 70px)}.floor{position:absolute;left:0;right:0;bottom:0;height:34%;background:#07111d;border-top:3px solid #38d8df;box-shadow:0 -15px 60px #00d9ff1a}.road{position:absolute;left:0;right:0;bottom:4%;height:2px;background:repeating-linear-gradient(90deg,#ffd85b 0 90px,transparent 90px 170px);opacity:.5}
+#world{position:absolute;left:0;bottom:0;width:100%;height:100%;overflow:visible}.world{position:absolute;left:0;bottom:0;height:34%;width:4200px}.platform{position:absolute;background:linear-gradient(#15536a,#0b2c3e);border-top:4px solid #4ceef5;box-shadow:inset 0 12px 0 #ffffff08}.platform:after{content:"";position:absolute;inset:20px 0 0;background:repeating-linear-gradient(90deg,#0b2030 0 20px,#123c50 20px 42px)}.terminal{position:absolute;width:72px;height:62px;border:3px solid var(--cyan);background:#0a3042;border-radius:12px;box-shadow:0 0 35px #00eaff77}.terminal:before{content:"⚕";display:block;text-align:center;font-size:30px;color:var(--cyan);margin-top:5px}.terminal span{display:block;text-align:center;font-size:9px;font-weight:900;color:#fff}.chip{position:absolute;width:24px;height:24px;background:var(--yellow);transform:rotate(45deg);border-radius:5px;box-shadow:0 0 25px #ffd85b}.chip:after{content:"+";position:absolute;inset:0;display:grid;place-items:center;transform:rotate(-45deg);font-weight:1000;color:#765900}.drone{position:absolute;width:42px;height:24px;border-radius:10px;background:#e14e78;box-shadow:0 0 18px #ff4f8888}.drone:before,.drone:after{content:"";position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;top:7px}.drone:before{left:9px}.drone:after{right:9px}
+.player{position:absolute;width:46px;height:72px;bottom:34%;z-index:3;filter:drop-shadow(0 8px 5px #0009);transition:transform .05s}.player .body{position:absolute;left:9px;top:27px;width:28px;height:33px;background:var(--shirt);border-radius:9px 9px 5px 5px}.player .head{position:absolute;left:12px;top:5px;width:22px;height:25px;border-radius:50%;background:var(--skin);z-index:2}.player .hair{position:absolute;left:9px;top:1px;width:28px;height:16px;border-radius:50% 50% 30% 30%;background:var(--hair);z-index:3}.player .eye{position:absolute;top:16px;width:3px;height:3px;background:#17202a;border-radius:50%;z-index:4}.player .e1{left:17px}.player .e2{left:25px}.player .leg{position:absolute;top:57px;width:10px;height:15px;background:#273b56;border-radius:4px}.player .l1{left:11px}.player .l2{left:26px}.player .name{position:absolute;top:-20px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:11px;font-weight:900;text-shadow:0 2px 4px #000}.run .l1{animation:step .18s infinite alternate}.run .l2{animation:step .18s infinite alternate-reverse}@keyframes step{to{transform:translateY(-4px)}}
+#prompt{position:absolute;left:50%;bottom:18%;transform:translateX(-50%);z-index:8;background:#061522eF;border:2px solid var(--cyan);border-radius:15px;padding:10px 16px;font-weight:900;display:none;white-space:nowrap}.touch{position:absolute;bottom:18px;left:18px;z-index:9;display:flex;gap:8px}.touch button{width:58px;height:58px;border:1px solid #4c8096;background:#071b2bcc;color:#fff;border-radius:16px;font-size:24px}.touch .jump{background:#087f91}.bottom{position:absolute;right:18px;bottom:18px;z-index:9;display:flex;gap:8px}.small{border:1px solid #3c6d82;background:#071b2bcc;color:#fff;border-radius:12px;padding:10px 14px;font-weight:800}
+.modal{display:none;position:absolute;inset:0;z-index:30;background:#020914dd;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.quiz{width:min(650px,92vw);background:#0b2032;border:2px solid var(--cyan);border-radius:24px;padding:24px;box-shadow:0 0 80px #00eaff33}.q{font-size:22px;font-weight:900;margin:10px 0 18px}.answers{display:grid;gap:10px}.ans{border:1px solid #3d7086;background:#102e43;color:#fff;border-radius:12px;padding:13px;text-align:left;cursor:pointer}.ans:hover{border-color:var(--cyan)}.feedback{min-height:25px;margin-top:12px;font-weight:900}.continue{display:none;margin-top:10px;border:0;background:var(--lime);color:#10250d;font-weight:1000;border-radius:12px;padding:13px 18px}.end{display:none;position:absolute;inset:0;z-index:40;background:#03101ddd;place-items:center;text-align:center}.end .box{background:#0b2436;border:2px solid var(--yellow);border-radius:25px;padding:35px;max-width:600px}.big{font-size:70px}
+@media(max-width:850px){.roster{grid-template-columns:repeat(4,1fr)}.card{padding:20px}.logo{font-size:44px}.char{min-height:105px}.top{padding:8px}.pill{font-size:11px;padding:6px 9px}}
+@media(max-width:500px){.roster{grid-template-columns:repeat(2,1fr)}.sub{font-size:13px}.card{max-height:95vh}.bottom{display:none}.touch{bottom:12px}}
 </style>
 </head>
 <body>
-<main class="wrap">
-<header class="hero">
-<div><div class="eyebrow">HEALTH & TECHNOLOGY • 2D PLATFORM ADVENTURE</div><h1 class="title">NEON HEALTH RUN</h1><div class="muted">Run, jump, collect the medical chips and unlock the facility.</div></div>
-<div class="pill">⏱ <b id="clock">06:00</b></div>
-</header>
-
-<section id="choose" class="panel">
-<div class="eyebrow">CHARACTER SELECT</div>
-<h2>Choose your runner</h2>
-<p class="muted">Pick a character, then start the adventure. The selected character will appear inside the game.</p>
+<div id="app">
+<section id="select">
+<div class="card">
+<div class="kicker">HEALTH & TECHNOLOGY • 2D ADVENTURE</div>
+<div class="logo">NEON HEALTH<br>RUN</div>
+<p class="sub">Run through the futuristic clinic, collect the medical chips and prove your Present Perfect skills.</p>
 <div id="roster" class="roster"></div>
-<div class="actions"><button id="start" type="button" class="btn primary">START ADVENTURE →</button></div>
+<button id="start" class="start">▶ START ADVENTURE</button>
+</div>
 </section>
 
-<section id="game" class="panel game">
-<div class="hud">
-<span class="pill">🧍 <b id="playerName"></b></span>
-<span class="pill">💾 Chips <b id="chips">0/4</b></span>
-<span class="pill">⭐ Score <b id="score">0</b></span>
-<span class="pill">❤️ <b id="lives">3</b></span>
-</div>
-<div class="stage"><canvas id="world" width="960" height="540"></canvas></div>
-<div class="below">
-<div class="box">
-<b id="mission">MISSION: Find the first medical chip.</b>
-<p id="status" class="muted">Run with ← → or A/D. Jump with ↑, W or SPACE. Touch the glowing terminal to answer.</p>
-<div class="actions"><button id="interact" class="btn primary">✋ INTERACT</button><button id="hint" class="btn gold">💡 HINT −15s</button></div>
-</div>
-<div class="box">
-<b>TOUCH CONTROLS</b>
-<div class="controls">
-<button class="btn up" data-key="ArrowUp">⬆️</button>
-<button class="btn left" data-key="ArrowLeft">⬅️</button>
-<button class="btn down" data-key="ArrowDown">⬇️</button>
-<button class="btn right" data-key="ArrowRight">➡️</button>
-</div>
-<div class="muted" style="text-align:center;margin-top:7px">Jump with ⬆️</div>
-</div>
-</div>
-<div class="actions" style="margin-top:12px"><button id="restart" class="btn">Restart</button><button id="quit" class="btn">Change character</button></div>
+<section id="game">
+<div class="top"><div class="stats"><span class="pill">🧑 <b id="pname"></b></span><span class="pill">💊 <b id="chips">0/4</b></span><span class="pill">⭐ <b id="score">0</b></span><span class="pill">❤️ <b id="lives">3</b></span></div><span class="pill mission" id="mission">COLLECT ALL MEDICAL CHIPS</span></div>
+<div id="scene"><div class="sky"></div><div class="stars"></div><div class="city"></div><div class="floor"></div><div class="road"></div><div id="world"></div><div id="player" class="player"><div class="name" id="pname2"></div><div class="hair"></div><div class="head"></div><div class="eye e1"></div><div class="eye e2"></div><div class="body"></div><div class="leg l1"></div><div class="leg l2"></div></div></div>
+<div id="prompt">Press E / INTERACT</div>
+<div class="touch"><button id="left">◀</button><button id="right">▶</button><button id="jump" class="jump">⬆</button></div>
+<div class="bottom"><button class="small" id="interact">E • INTERACT</button><button class="small" id="hint">💡 HINT</button></div>
 </section>
 
-<section id="ending" class="panel end hide"><div style="font-size:4rem">🏆</div><h2 id="endTitle"></h2><p id="endText" class="muted"></p><button id="again" class="btn primary">PLAY AGAIN</button></section>
-</main>
-
-<div id="modal" class="modal"><div class="dialog">
-<div class="eyebrow">MEDICAL TERMINAL</div><h2 id="qTitle"></h2><p id="question"></p>
-<div id="answers" class="answers"></div><div id="feedback" class="feedback"></div>
-<div class="actions"><button id="continue" class="btn primary hide">CONTINUE RUN →</button></div>
-</div></div>
-
+<div id="quizModal" class="modal"><div class="quiz"><div class="kicker" id="qtitle">MEDICAL TERMINAL</div><div class="q" id="question"></div><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div><button class="continue" id="continue">CONTINUE RUN →</button></div></div>
+<div id="end" class="end"><div class="box"><div class="big" id="endIcon">🏆</div><h1 id="endTitle"></h1><p id="endText"></p><button class="start" id="again">PLAY AGAIN</button></div></div>
+</div>
 <script>
 const people=[
-{name:"María José",hair:"#171313",skin:"#f0c7a5",shirt:"#49a8d8"},
-{name:"Natalia",hair:"#e5c36a",skin:"#f4d7bd",shirt:"#e68bca"},
-{name:"Kevin",hair:"#241812",skin:"#bd875f",shirt:"#55c98b"},
-{name:"Sebastián",hair:"#171313",skin:"#d5a17e",shirt:"#5d75e8"},
-{name:"Valentina",hair:"#241611",skin:"#f1c8a6",shirt:"#ef6b6b"},
-{name:"Laura",hair:"#b83d2d",skin:"#efc3a5",shirt:"#8d72e8"},
-{name:"Dallana",hair:"#b83d2d",skin:"#eac0a4",shirt:"#47b8a4"},
-{name:"Katherin",hair:"#171313",skin:"#eac5a8",shirt:"#e6a33e"},
-{name:"Paula",hair:"#67243b",skin:"#bd896b",shirt:"#d95d83"},
-{name:"Osana",hair:"#211711",skin:"#bd896b",shirt:"#45a7c7"},
-{name:"Daniela",hair:"#c84936",skin:"#efc3a5",shirt:"#7fc85a"},
-{name:"Ronald",hair:"#171313",skin:"#bd896b",shirt:"#5579d9"},
-{name:"Melissa",hair:"#39251e",skin:"#efc7a8",shirt:"#c96ad7"},
-{name:"John (Professor)",hair:"#171313",skin:"#684735",shirt:"#4b9e9b"}
+["María José","#171313","#f0c7a5","#49a8d8"],["Natalia","#e5c36a","#f4d7bd","#e68bca"],["Kevin","#241812","#bd875f","#55c98b"],["Sebastián","#171313","#d5a17e","#5d75e8"],["Valentina","#241611","#f1c8a6","#ef6b6b"],["Laura","#b83d2d","#efc3a5","#8d72e8"],["Dallana","#b83d2d","#eac0a4","#47b8a4"],["Katherin","#171313","#eac5a8","#e6a33e"],["Paula","#67243b","#bd896b","#d95d83"],["Osana","#211711","#bd896b","#45a7c7"],["Daniela","#c84936","#efc3a5","#7fc85a"],["Ronald","#171313","#bd896b","#5579d9"],["Melissa","#39251e","#efc7a8","#c96ad7"],["John (Professor)","#171313","#684735","#4b9e9b"]];
+const qs=[
+["MEDICAL CHIP 1","The nurse _____ (check) the patient's temperature.",["have checked","has checked","has check"],1,"The nurse is singular: has + checked."],
+["MEDICAL CHIP 2","Choose the correct sentence.",["The doctors has used the scanner.","The doctors have used the scanner.","The doctors have use the scanner."],1,"Doctors is plural: have + used."],
+["MEDICAL CHIP 3","AI _____ (change) medical diagnosis.",["have changed","has changed","has change"],1,"AI is singular: has + changed."],
+["MEDICAL CHIP 4","Choose the correct question.",["Have you ever used a health app?","Has you ever used a health app?","Have you ever use a health app?"],0,"With you: have + used."]
 ];
-
-const questions=[
-{title:"MEDICAL CHIP 1",q:"Complete: The nurse _____ (check) the patient's temperature.",a:["have checked","has checked","has check"],c:1,why:"The nurse is singular: has + checked."},
-{title:"MEDICAL CHIP 2",q:"Choose the correct sentence.",a:["The doctors has used the scanner.","The doctors have used the scanner.","The doctors have use the scanner."],c:1,why:"Doctors is plural: have + used."},
-{title:"MEDICAL CHIP 3",q:"Complete: AI _____ (change) medical diagnosis.",a:["have changed","has changed","has change"],c:1,why:"AI is singular: has + changed."},
-{title:"MEDICAL CHIP 4",q:"Choose the correct question.",a:["Have you ever used a health app?","Has you ever used a health app?","Have you ever use a health app?"],c:0,why:"With you, use have + the past participle used."}
-];
-
-const canvas=document.getElementById("world"),ctx=canvas.getContext("2d");
-const W=960,H=540,worldW=4200,ground=470;
-let chosen=0,player={x:80,y:400,vx:0,vy:0,w:30,h:48,onGround:false,dir:1,frame:0};
-let cam=0,keys={},chips=0,score=0,lives=3,seconds=360,paused=false,won=false,timer=null,checkpoint=80;
-const stations=[
-{x:760,y:405,question:0,done:false,label:"CHECKPOINT 1"},
-{x:1600,y:405,question:1,done:false,label:"CHECKPOINT 2"},
-{x:2500,y:405,question:2,done:false,label:"CHECKPOINT 3"},
-{x:3350,y:405,question:3,done:false,label:"CHECKPOINT 4"}
-];
-const platforms=[
-{x:0,y:470,w:620,h:70},{x:700,y:470,w:450,h:70},{x:1260,y:470,w:470,h:70},{x:1830,y:470,w:510,h:70},{x:2450,y:470,w:500,h:70},{x:3070,y:470,w:600,h:70},{x:3790,y:470,w:410,h:70},
-{x:300,y:385,w:170,h:22},{x:860,y:350,w:150,h:22},{x:1130,y:405,w:90,h:22},{x:1370,y:365,w:170,h:22},{x:1720,y:315,w:140,h:22},{x:1980,y:380,w:180,h:22},{x:2260,y:330,w:130,h:22},{x:2630,y:370,w:180,h:22},{x:2890,y:305,w:130,h:22},{x:3200,y:365,w:180,h:22},{x:3480,y:310,w:150,h:22},{x:3720,y:380,w:150,h:22}
-];
-const chipsData=[
-{x:420,y:350,got:false},{x:1030,y:315,got:false},{x:1530,y:330,got:false},{x:2920,y:270,got:false}
-];
-const drones=[{x:570,y:425,v:1.2},{x:1190,y:360,v:-1},{x:2130,y:335,v:1.1},{x:2780,y:425,v:-1.1},{x:3600,y:425,v:1}];
-
-function makeRoster(){
-const r=document.getElementById("roster");r.innerHTML="";
-people.forEach((p,i)=>{
-const b=document.createElement("button");b.type="button";b.className="char"+(i===chosen?" selected":"");
-b.innerHTML='<div class="mini" style="--hair:'+p.hair+';--skin:'+p.skin+';--shirt:'+p.shirt+'"><i class="head"></i><i class="hair"></i><i class="body"></i><i class="leg1"></i><i class="leg2"></i><i class="eye e1"></i><i class="eye e2"></i></div><b>'+p.name+'</b>';
-b.onclick=()=>{chosen=i;r.querySelectorAll(".char").forEach(x=>x.classList.remove("selected"));b.classList.add("selected")};
-r.appendChild(b);
-});
-}
-
-function startGame(){
-clearInterval(timer);document.getElementById("choose").classList.add("hide");document.getElementById("ending").classList.add("hide");document.getElementById("game").classList.add("show");
-player={x:80,y:400,vx:0,vy:0,w:30,h:48,onGround:false,dir:1,frame:0};cam=0;chips=0;score=0;lives=3;seconds=360;checkpoint=80;won=false;paused=false;
-stations.forEach(s=>s.done=false);chipsData.forEach(c=>c.got=false);drones.forEach((d,i)=>d.x=[570,1190,2130,2780,3600][i]);
-document.getElementById("playerName").textContent=people[chosen].name;updateHud();draw();
-timer=setInterval(()=>{if(!paused&&!won){seconds--;updateClock();if(seconds<=0)finish(false)}},1000);
-requestAnimationFrame(loop);
-}
-function updateClock(){document.getElementById("clock").textContent=String(Math.floor(seconds/60)).padStart(2,"0")+":"+String(seconds%60).padStart(2,"0")}
-function updateHud(){document.getElementById("chips").textContent=chips+"/4";document.getElementById("score").textContent=score;document.getElementById("lives").textContent=lives;document.getElementById("mission").textContent=chips<4?"MISSION: Collect the medical chips and unlock every terminal.":"MISSION: Reach the emergency door at the far right."}
-function rectsOverlap(a,b){return a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y}
-function solidAt(x,y,w,h){return platforms.some(p=>x<p.x+p.w&&x+w>p.x&&y<p.y+p.h&&y+h>p.y)}
-function jump(){if(!paused&&player.onGround){player.vy=-13;player.onGround=false}}
-function moveInput(){let l=keys.ArrowLeft||keys.a,r=keys.ArrowRight||keys.d;if(l){player.vx-=.7;player.dir=-1}if(r){player.vx+=.7;player.dir=1}if(!l&&!r)player.vx*=.82;player.vx=Math.max(-6,Math.min(6,player.vx))}
-function physics(){
-moveInput();player.vy+=.65;player.vy=Math.min(player.vy,14);
-let nx=player.x+player.vx;
-if(!solidAt(nx,player.y,player.w,player.h))player.x=nx;else player.vx=0;
-let ny=player.y+player.vy;player.onGround=false;
-if(player.vy>=0){for(const p of platforms){if(player.x+player.w>p.x&&player.x<p.x+p.w&&player.y+player.h<=p.y+5&&ny+player.h>=p.y){player.y=p.y-player.h;player.vy=0;player.onGround=true;break}}}
-else if(!solidAt(player.x,ny,player.w,player.h))player.y=ny;else player.vy=0;
-if(player.y>H+80){loseLife();return}
-player.x=Math.max(0,Math.min(worldW-player.w,player.x));
-player.frame+=Math.abs(player.vx)>.4?.22:.06;
-for(const c of chipsData){if(!c.got&&Math.abs(player.x+15-c.x)<28&&Math.abs(player.y+20-c.y)<45){c.got=true;chips++;score+=50;updateHud();}}
-for(const d of drones){d.x+=d.v;if(d.x<d.x-80||d.x>worldW-100)d.v*=-1;const enemy={x:d.x,y:d.y,w:28,h:24};if(rectsOverlap(player,enemy)&&player.vy>1){score+=25;d.x+=120;player.vy=-8}else if(rectsOverlap(player,enemy)){loseLife();return}}
-if(player.x>checkpoint+250)checkpoint=Math.max(checkpoint,player.x-80);
-if(player.x>worldW-150&&chips===4)finish(true);
-}
-function loseLife(){lives--;updateHud();if(lives<=0){finish(false);return}player.x=Math.max(80,checkpoint);player.y=400;player.vx=0;player.vy=0;document.getElementById("status").textContent="Ouch! You lost a life. Keep running!";}
-function drawBackground(){
-let g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,"#071629");g.addColorStop(1,"#0b2940");ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
-ctx.fillStyle="#12334b";for(let i=0;i<12;i++){let x=i*90-(cam*.18%90);ctx.fillRect(x,170+(i%3)*20,55,300)}
-ctx.fillStyle="#1b5a70";for(let i=0;i<10;i++){let x=i*120-(cam*.3%120);ctx.fillRect(x,250,4,160)}
-}
-function draw(){
-drawBackground();ctx.save();ctx.translate(-cam,0);
-for(const p of platforms){ctx.fillStyle="#164c5e";ctx.fillRect(p.x,p.y,p.w,p.h);ctx.fillStyle="#42cbd5";ctx.fillRect(p.x,p.y,p.w,5);ctx.fillStyle="#0d2b3b";for(let x=p.x+10;x<p.x+p.w-5;x+=28)ctx.fillRect(x,p.y+18,18,7)}
-for(const c of chipsData)if(!c.got){ctx.save();ctx.translate(c.x,c.y);ctx.rotate(Math.sin(performance.now()/300+c.x)*.08);ctx.fillStyle="#ffd45a";ctx.beginPath();ctx.moveTo(0,-15);ctx.lineTo(12,0);ctx.lineTo(0,15);ctx.lineTo(-12,0);ctx.closePath();ctx.fill();ctx.fillStyle="#fff3a1";ctx.fillRect(-3,-8,6,16);ctx.restore()}
-for(const s of stations){ctx.fillStyle=s.done?"#246b50":"#153b56";ctx.fillRect(s.x-30,s.y-48,60,42);ctx.strokeStyle=s.done?"#62e69b":"#63efff";ctx.lineWidth=3;ctx.strokeRect(s.x-30,s.y-48,60,42);ctx.fillStyle=s.done?"#62e69b":"#63efff";ctx.font="bold 11px system-ui";ctx.textAlign="center";ctx.fillText(s.done?"UNLOCKED":"TERMINAL",s.x,s.y-23);ctx.font="20px sans-serif";ctx.fillText(s.done?"✓":"⚕",s.x,s.y-3)}
-for(const d of drones){ctx.fillStyle="#d84c72";ctx.fillRect(d.x,d.y,28,18);ctx.fillStyle="#ff9cba";ctx.fillRect(d.x+6,d.y+5,5,5);ctx.fillRect(d.x+17,d.y+5,5,5);ctx.fillStyle="#5be8ff";ctx.fillRect(d.x-5,d.y+18,38,3)}
-drawPlayer();
-ctx.fillStyle="#ffd45a";ctx.font="bold 18px system-ui";ctx.textAlign="center";ctx.fillText("EMERGENCY EXIT",worldW-80,420);
-ctx.fillStyle="#63efff";ctx.fillRect(worldW-120,435,80,35);ctx.restore();
-}
-function drawPlayer(){
-const p=player,x=p.x,y=p.y,dat=people[chosen],bob=Math.sin(p.frame*2)*1.5;
-ctx.save();ctx.translate(x+15,y+24+bob);if(p.dir<0)ctx.scale(-1,1);
-ctx.fillStyle="#0006";ctx.beginPath();ctx.ellipse(0,25,18,5,0,0,Math.PI*2);ctx.fill();
-ctx.fillStyle=dat.shirt;ctx.fillRect(-13,-2,26,25);ctx.fillStyle="#263b56";ctx.fillRect(-11,22,9,18);ctx.fillRect(2,22,9,18);
-ctx.fillStyle=dat.skin;ctx.beginPath();ctx.arc(0,-13,13,0,Math.PI*2);ctx.fill();
-ctx.fillStyle=dat.hair;ctx.beginPath();ctx.arc(0,-17,14,Math.PI,Math.PI*2);ctx.fill();ctx.fillRect(-13,-17,26,7);
-ctx.fillStyle="#18212a";ctx.fillRect(4,-14,3,3);ctx.fillRect(-7,-14,3,3);
-ctx.fillStyle="#fff";ctx.font="bold 11px system-ui";ctx.textAlign="center";ctx.fillText(dat.name,0,-32);
-ctx.restore();
-}
-function loop(){if(document.getElementById("game").classList.contains("show")&&!won&&!paused){physics();cam=Math.max(0,Math.min(worldW-W,player.x-W*.38));draw()}if(document.getElementById("game").classList.contains("show")&&!won)requestAnimationFrame(loop)}
-function nearestStation(){let best=-1,dist=999;stations.forEach((s,i)=>{if(!s.done){let d=Math.abs(player.x-s.x)+Math.abs(player.y-s.y);if(d<dist){dist=d;best=i}}});return dist<85?best:-1}
-function interact(){if(!document.getElementById("game").classList.contains("show")||won)return;let i=nearestStation();if(i<0){document.getElementById("status").textContent="Move close to the glowing medical terminal.";return}openQuestion(i)}
-function openQuestion(i){paused=true;const q=questions[i];document.getElementById("qTitle").textContent=q.title;document.getElementById("question").textContent=q.q;document.getElementById("feedback").textContent="Choose the best answer.";document.getElementById("continue").classList.add("hide");const a=document.getElementById("answers");a.innerHTML="";q.a.forEach((x,j)=>{const b=document.createElement("button");b.className="btn";b.textContent=String.fromCharCode(65+j)+". "+x;b.onclick=()=>answer(i,j,b);a.appendChild(b)});document.getElementById("modal").classList.add("open")}
-function answer(i,j,b){const q=questions[i],all=[...document.querySelectorAll("#answers button")];all.forEach(x=>x.disabled=true);const f=document.getElementById("feedback");if(j===q.c){stations[i].done=true;chips=Math.max(chips,stations.filter(s=>s.done).length);score+=100;f.style.color="var(--green)";f.textContent="Correct! "+q.why;document.getElementById("continue").classList.remove("hide");updateHud();draw()}else{f.style.color="#ff8da5";f.textContent="Not quite. "+q.why;const retry=document.createElement("button");retry.className="btn";retry.textContent="TRY AGAIN";retry.onclick=()=>{document.getElementById("modal").classList.remove("open");paused=false;openQuestion(i)};document.getElementById("answers").appendChild(retry)}}
-document.getElementById("continue").onclick=()=>{document.getElementById("modal").classList.remove("open");paused=false;document.getElementById("status").textContent="Great! Run to the next terminal."};
-function finish(win){won=true;clearInterval(timer);document.getElementById("game").classList.remove("show");document.getElementById("ending").classList.remove("hide");document.getElementById("endTitle").textContent=win?"YOU ESCAPED!":"GAME OVER";document.getElementById("endText").textContent=win?"Amazing, "+people[chosen].name+"! You collected all four medical chips and escaped the facility with "+score+" points.":"The facility locked down. Try again and run faster!"}
-function hint(){seconds=Math.max(0,seconds-15);updateClock();document.getElementById("status").textContent=chips<4?"Look for the next glowing terminal. Walk close and press INTERACT.":"The exit is at the far right!";}
-document.addEventListener("keydown",e=>{const k=e.key;keys[k]=true;if(["ArrowLeft","ArrowRight","ArrowUp"," ","a","d","w"].includes(k))e.preventDefault();if((k==="ArrowUp"||k==="w"||k===" ")&&!e.repeat)jump();if(k==="Enter")interact()});
-document.addEventListener("keyup",e=>keys[e.key]=false);
-document.querySelectorAll("[data-key]").forEach(b=>{const k=b.dataset.key;b.addEventListener("pointerdown",e=>{e.preventDefault();keys[k]=true;if(k==="ArrowUp")jump()});b.addEventListener("pointerup",()=>keys[k]=false);b.addEventListener("pointerleave",()=>keys[k]=false)});
-document.getElementById("start").onclick=startGame;
-document.getElementById("interact").onclick=interact;
-document.getElementById("hint").onclick=hint;
-document.getElementById("restart").onclick=startGame;
-document.getElementById("quit").onclick=()=>{clearInterval(timer);document.getElementById("game").classList.remove("show");document.getElementById("choose").classList.remove("hide")};
-document.getElementById("again").onclick=startGame;
-makeRoster();updateClock();
+const roster=document.getElementById("roster");let selected=0;
+people.forEach((p,i)=>{const b=document.createElement("button");b.className="char"+(i===0?" sel":"");b.innerHTML='<div class="avatar" style="--hair:'+p[1]+';--skin:'+p[2]+';--shirt:'+p[3]+'"></div><b>'+p[0]+'</b>';b.onclick=()=>{selected=i;document.querySelectorAll(".char").forEach(x=>x.classList.remove("sel"));b.classList.add("sel")};roster.appendChild(b)});
+const world=document.getElementById("world"),player=document.getElementById("player");let x=90,v=0,vy=0,grounded=true,dir=1,cam=0,keys={},score=0,lives=3,got=0,paused=false,seconds=360,stations=[],raf;
+const level=[
+[0,470,620,70],[700,470,450,70],[1260,470,470,70],[1830,470,510,70],[2450,470,500,70],[3070,470,600,70],[3790,470,410,70],
+[280,385,180,20],[850,355,160,20],[1120,400,90,20],[1370,365,170,20],[1710,315,140,20],[1970,380,180,20],[2250,330,140,20],[2620,370,180,20],[2890,305,140,20],[3200,365,180,20],[3480,310,150,20],[3720,380,150,20]];
+function build(){world.innerHTML="";level.forEach(p=>{let e=document.createElement("div");e.className="platform";e.style.cssText=`left:${p[0]}px;bottom:${p[1]-70}px;width:${p[2]}px;height:${p[3]}px`;world.appendChild(e)});stations=[760,1600,2500,3350].map((x,i)=>{let e=document.createElement("div");e.className="terminal";e.style.left=(x-36)+"px";e.style.bottom="34%";e.innerHTML="<span>"+(i+1)+" • "+(i<3?"SCAN":"FINAL")+"</span>";world.appendChild(e);return {x,el:e,done:false,i}});[420,1030,1530,2920].forEach((x,i)=>{let e=document.createElement("div");e.className="chip";e.style.left=(x-12)+"px";e.style.bottom=(i===3? "55%":"41%");world.appendChild(e);e.dataset.i=i});[570,1190,2130,2780,3600].forEach((x,i)=>{let e=document.createElement("div");e.className="drone";e.style.left=x+"px";e.style.bottom=(i%2?"48%":"38%");world.appendChild(e)})}
+function start(){document.getElementById("select").style.display="none";document.getElementById("game").style.display="block";document.documentElement.requestFullscreen?.().catch(()=>{});x=90;v=0;vy=0;score=0;lives=3;got=0;seconds=360;paused=false;stations.forEach(s=>s.done=false);const p=people[selected];player.style.setProperty("--hair",p[1]);player.style.setProperty("--skin",p[2]);player.style.setProperty("--shirt",p[3]);document.getElementById("pname").textContent=p[0];document.getElementById("pname2").textContent=p[0];hud();build();clearInterval(window.t);window.t=setInterval(()=>{if(!paused){seconds--;if(seconds<=0)finish(false)}},1000);cancelAnimationFrame(raf);loop()}
+function hud(){document.getElementById("chips").textContent=got+"/4";document.getElementById("score").textContent=score;document.getElementById("lives").textContent=lives;document.getElementById("mission").textContent=got<4?"COLLECT ALL MEDICAL CHIPS":"REACH THE EMERGENCY EXIT";document.title="Neon Health Run • "+String(Math.floor(seconds/60)).padStart(2,"0")+":"+String(seconds%60).padStart(2,"0")}
+function solid(px,py){return level.some(p=>px+40>p[0]&&px<p[0]+p[2]&&py+72>p[1]&&py+72<p[1]+16)}
+function loop(){if(!paused){let L=keys.ArrowLeft||keys.a,R=keys.ArrowRight||keys.d;if(L){v=Math.max(v-.55,-6);dir=-1}if(R){v=Math.min(v+.55,6);dir=1}if(!L&&!R)v*=.82;vy+=.65;let nx=x+v;if(nx>=0&&nx<4160)x=nx;let ny=player.offsetTop+vy;let base=470;let hit=470;level.forEach(p=>{if(x+38>p[0]&&x<p[0]+p[2]&&player.offsetTop+72<=p[1]+8&&ny+72>=p[1])hit=Math.min(hit,p[1])});if(ny+72>=hit){player.style.top="";player.style.bottom=(540-hit-72)+"px";vy=0;grounded=true}else{player.style.bottom=(540-ny-72)+"px";grounded=false}if(player.offsetTop>650){lives--;x=Math.max(80,x-250);if(lives<=0)return finish(false);hud()}if(Math.abs(v)>.4)player.classList.add("run");else player.classList.remove("run");player.style.left=(x-cam)+"px";player.style.transform=dir<0?"scaleX(-1)":"scaleX(1)";cam=Math.max(0,Math.min(3340,x-300));world.style.transform="translateX(-"+cam+"px)";document.querySelector(".city").style.transform="translateX("+(-cam*.08)+"px) skewX(-3deg)";collect();checkPrompt();}raf=requestAnimationFrame(loop)}
+function collect(){document.querySelectorAll(".chip").forEach(e=>{if(e.style.display==="none")return;let cx=parseFloat(e.style.left)+12;if(Math.abs(cx-x-18)<30){e.style.display="none";got++;score+=50;hud()}})}
+function checkPrompt(){let s=stations.find(s=>!s.done&&Math.abs(s.x-x)<75);document.getElementById("prompt").style.display=s?"block":"none"}
+function jump(){if(!paused&&grounded){vy=-13;grounded=false}}
+function interact(){let s=stations.find(s=>!s.done&&Math.abs(s.x-x)<85);if(s)openQuiz(s);else document.getElementById("mission").textContent=got<4?"Get close to a glowing terminal.":"Run to the emergency exit!"}
+function openQuiz(s){paused=true;const q=qs[s.i];document.getElementById("qtitle").textContent=q[0];document.getElementById("question").textContent=q[1];const a=document.getElementById("answers");a.innerHTML="";document.getElementById("feedback").textContent="";document.getElementById("continue").style.display="none";q[2].forEach((v,i)=>{let b=document.createElement("button");b.className="ans";b.textContent=String.fromCharCode(65+i)+". "+v;b.onclick=()=>answer(s,q,i);a.appendChild(b)});document.getElementById("quizModal").classList.add("open")}
+function answer(s,q,i){document.querySelectorAll(".ans").forEach(b=>b.disabled=true);const f=document.getElementById("feedback");if(i===q[3]){s.done=true;got=Math.max(got,stations.filter(z=>z.done).length);score+=100;f.style.color="var(--lime)";f.textContent="✓ Correct! "+q[4];document.getElementById("continue").style.display="inline-block";hud()}else{f.style.color="#ff91aa";f.textContent="✗ Try again. "+q[4];let b=document.createElement("button");b.className="ans";b.textContent="TRY AGAIN";b.onclick=()=>{document.getElementById("quizModal").classList.remove("open");paused=false;openQuiz(s)};document.getElementById("answers").appendChild(b)}}
+document.getElementById("continue").onclick=()=>{document.getElementById("quizModal").classList.remove("open");paused=false};
+function finish(win){paused=true;clearInterval(window.t);document.getElementById("end").style.display="grid";document.getElementById("endIcon").textContent=win?"🏆":"💥";document.getElementById("endTitle").textContent=win?"FACILITY ESCAPED!":"GAME OVER";document.getElementById("endText").textContent=win?"Amazing, "+people[selected][0]+"! You mastered the Present Perfect and escaped with "+score+" points.":"The facility locked down. Try again and collect all four chips.";cancelAnimationFrame(raf)}
+document.addEventListener("keydown",e=>{keys[e.key]=true;if(["ArrowLeft","ArrowRight","ArrowUp"," ","a","d","w"].includes(e.key))e.preventDefault();if(["ArrowUp","w"," "].includes(e.key)&&!e.repeat)jump();if(e.key.toLowerCase()==="e")interact()});document.addEventListener("keyup",e=>keys[e.key]=false);
+function hold(id,k){let b=document.getElementById(id);b.onpointerdown=e=>{e.preventDefault();keys[k]=true};b.onpointerup=()=>keys[k]=false;b.onpointerleave=()=>keys[k]=false}
+hold("left","ArrowLeft");hold("right","ArrowRight");document.getElementById("jump").onclick=jump;document.getElementById("interact").onclick=interact;document.getElementById("hint").onclick=()=>{seconds=Math.max(0,seconds-15);document.getElementById("mission").textContent="Hint: glowing terminals are your checkpoints.";};document.getElementById("start").onclick=start;document.getElementById("again").onclick=()=>{document.getElementById("end").style.display="none";start()};
 </script>
 </body>
 </html>
